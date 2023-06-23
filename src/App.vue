@@ -25,7 +25,6 @@
   </div>
 </template>
 
-
 <script>
 import MainPage from './components/MainPage.vue'
 import axios from 'axios';
@@ -74,7 +73,6 @@ export default {
   },
 }
 </script>
-
 
 <style>
 #app {

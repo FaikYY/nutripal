@@ -22,3 +22,6 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
+# Ignore the API Key File
+key.js
+
