@@ -46,7 +46,7 @@ This project is a Vue.js web application that allows users to search for nutriti
 
 ## API Key
 
-The application uses an API key to access the external nutrition data API. The API key is stored in the code for demonstration purposes. In a real-world scenario, it is recommended to store sensitive information like API keys in a more secure manner, such as environment variables or a configuration file.
+The application uses an API key to access the external nutrition data API. The API key is stored in a seperate file for demonstration purposes. Please go to config.js and get your own API key by following the instructions in the file.
 
 ## Contributing
 
