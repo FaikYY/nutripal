@@ -17,23 +17,21 @@
     <!-- <p>The text in the search bar: {{ searchKey }}</p> -->
     <input v-model="searchKey" placeholder="search a nutrition..." />
     <button @click="makeAPICall">Search</button>
-    <h2>Nutrition Name: {{ nutrition.name }}</h2>
-    <h2>Serving Size: {{ nutrition.serving_size_g }}g</h2>
-    <h2>Calories: {{ nutrition.calories }}</h2>
-    <h2>Protein: {{ nutrition.protein_g }}g</h2>
-    <h2>Fat: {{ nutrition.fat_total_g }}g</h2>
+    <NutritionInfo nutritionInfo="{{ nutrition }}"/>
   </div>
 </template>
 
 <script>
-import MainPage from './components/MainPage.vue'
+import MainPage from './components/MainPage.vue';
+import NutritionInfo from './components/NutritionInfo.vue';
 import axios from 'axios';
 import { API_KEY } from './config.js';
 
 export default {
   name: 'App',
   components: {
-    MainPage
+    MainPage,
+    NutritionInfo
   },
   data() {
     return {
