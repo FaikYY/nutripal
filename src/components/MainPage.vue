@@ -2,32 +2,38 @@
   <div class="hello">
     <img alt="Vue logo" src="../assets/logo.png">
     <h1>Search Something</h1>
-    <input v-model="searchKey" placeholder="search a nutrition..." />
-    <button @click="makeAPICall">Search</button>
-    <h2>Nutrition Name: {{ nutrition.name }}</h2>
-    <h2>Serving Size: {{ nutrition.serving_size_g }}g</h2>
-    <h2>Calories: {{ nutrition.calories }}</h2>
-    <h2>Protein: {{ nutrition.protein_g }}g</h2>
-    <h2>Fat: {{ nutrition.fat_total_g }}g</h2>
+    <input v-model="searchKey" placeholder="Search for a nutrition..." />
+    <button @click="searchNutrition">Search</button>
+
+
+    <div v-if="selectedNutrition.length > 0">
+      <NutritionFact :nutritionFact="selectedNutrition" />
+    </div>
+    <div v-else>
+      <!-- <p>No nutrition data found for the given query.</p> -->
+    </div>
   </div>
 </template>
 
 <script>
+
 import axios from 'axios';
 import { API_KEY } from '../config.js';
+import NutritionFact from './NutritionFact.vue';
 
 export default {
+  components: { NutritionFact },
   props: {
     msg: String
   },
   data() {
     return {
       searchKey: '',
-      nutrition: {}
+      selectedNutrition: []
     }
   },
   methods: {
-    makeAPICall() {
+    searchNutrition() {
       const query = this.searchKey;
 
       axios
@@ -38,28 +44,33 @@ export default {
         .then((response) => {
           const items = response.data.items;
           if (items.length > 0) {
-            const nutrition = items[0]; // Assuming you only want the first item
-            console.log('Nutrition:', nutrition);
-            console.log('Name:', nutrition.name);
-            console.log('Calories:', nutrition.calories);
-            console.log('Protein:', nutrition.protein_g);
-            console.log('Fat:', nutrition.fat_total_g);
+            const foundNutrition = items;
+            console.log('Nutrition:', foundNutrition[0]);
+            console.log('Name:', foundNutrition[0].name);
+            console.log('Calories:', foundNutrition[0].calories);
+            console.log('Protein:', foundNutrition[0].protein_g);
+            console.log('Fat:', foundNutrition[0].fat_total_g);
 
-            this.nutrition = nutrition;
-            // Print other nutrition values as needed
+            this.selectedNutrition = foundNutrition;
+
           } else {
+            this.clearNutrition();
             console.log('No nutrition data found for the given query.');
+            alert('No nutrition data found for the given query.');
           }
         })
         .catch((error) => {
           console.error('Error:', error.response.data);
+          alert('Error:', error.response.data);
         });
     },
+    clearNutrition() {
+      this.selectedNutrition = [];
+    }
   },
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;
