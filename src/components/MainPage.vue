@@ -37,12 +37,13 @@ export default {
       const query = this.searchKey;
 
       axios
-        .get('https://api.calorieninjas.com/v1/nutrition', {
+        .get('https://api.calorieninjas.com/v1/nutrition/', {
           params: { query },
           headers: { 'X-Api-Key': API_KEY },
         })
         .then((response) => {
           const items = response.data.items;
+          console.log(items);
           if (items.length > 0) {
             const foundNutrition = items;
             console.log('Nutrition:', foundNutrition[0]);

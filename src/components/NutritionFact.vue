@@ -43,7 +43,7 @@ export default {
 .name {
     font-size: 18px;
     font-weight: bold;
-    color: #3f51b5;
+    /* color: var(--color-primary); */
     margin-bottom: 10px;
 }
 
