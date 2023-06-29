@@ -6,7 +6,7 @@
     <button @click="searchNutrition">Search</button>
 
 
-    <div v-if="selectedNutrition.length > 0">
+    <div class="centered" v-if="selectedNutrition.length > 0">
       <NutritionFact :nutritionFact="selectedNutrition" />
     </div>
     <div v-else>
@@ -72,6 +72,18 @@ export default {
 </script>
 
 <style scoped>
+.hello {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.centered {
+  width: 50%;
+  text-align: center;
+}
+
 h3 {
   margin: 40px 0 0;
 }

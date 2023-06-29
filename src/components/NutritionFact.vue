@@ -1,49 +1,49 @@
-<!-- TODO: add all the information from the API response -->
-<!-- TODO: calculate the total intake of everthing and display it at the end -->
-
-
 <template>
-    <div class="nutrition-fact" v-for="nutrition in nutritionFact" :key="nutrition.id">
-        <h3 class="name">{{ nutrition.name ? nutrition.name.toUpperCase() : '' }}</h3>
+    <div class="nutrition-fact" v-for="fact in filteredFacts" :key="fact.key">
+        <h3 class="name">{{ fact.name ? fact.name.toUpperCase() : '' }}</h3>
         <div class="nutrition-info">
-            <div class="fact">
-                <span class="label">Calories:</span>
-                <span class="value">{{ nutrition.calories }}</span>
-            </div>
-            <div class="fact">
-                <span class="label">Protein:</span>
-                <span class="value">{{ nutrition.protein_g }}</span>
-            </div>
-            <div class="fact">
-                <span class="label">Fat:</span>
-                <span class="value">{{ nutrition.fat_total_g }}</span>
-            </div>
-            <div class="fact">
-                <span class="label">Carbs:</span>
-                <span class="value">{{ nutrition.carbohydrates_total_g }}</span>
+            <div class="fact" v-for="item in fact.properties" :key="item.label">
+                <span class="label">{{ item.label }}:</span>
+                <span class="value">{{ item.value }}</span>
             </div>
         </div>
     </div>
 </template>
-
+  
 <script>
 export default {
-    name: 'NutritionFact',
-    props: ['nutritionFact']
-}
+    name: "NutritionFact",
+    props: ["nutritionFact"],
+    computed: {
+        filteredFacts() {
+            const facts = { ...this.nutritionFact };
+            return Object.entries(facts).map(([key, value]) => ({
+                key: key,
+                name: value.name,
+                properties: Object.entries(value).map(([label, propValue]) => ({
+                    label,
+                    value: propValue,
+                })),
+            }));
+        },
+    },
+};
 </script>
-
+  
 <style scoped>
 .nutrition-fact {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
     padding: 20px;
     margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .name {
     font-size: 18px;
     font-weight: bold;
+    color: #3f51b5;
     margin-bottom: 10px;
 }
 
@@ -59,6 +59,7 @@ export default {
 
 .label {
     font-weight: bold;
+    color: #3f51b5;
 }
 
 .value {

@@ -7,6 +7,7 @@
 <!-- TODO: Add user login and signup to store the user data -->
 <!-- TODO: Focus on seperation of concerns and clean the code by simplifying the variables -->
 <!-- TODO: Add a demo api call counter to prevent api key limit exhaustion, specifically for live demo version -->
+<!-- TODO: Save searched nutrition facts somewhere and keep track of them -->
 
 <template>
   <div id="app">
@@ -26,6 +27,8 @@ export default {
 </script>
 
 <style>
+@import url("../styles/material-you.css");
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
