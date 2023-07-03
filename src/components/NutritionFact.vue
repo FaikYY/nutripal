@@ -1,10 +1,16 @@
 <template>
-    <div class="nutrition-fact" v-for="fact in filteredFacts" :key="fact.key">
-        <h3 class="name">{{ fact.name ? fact.name.toUpperCase() : '' }}</h3>
-        <div class="nutrition-info ">
-            <div class="fact" v-for="item in fact.properties" :key="item.label">
-                <span class="label">{{ item.label }}:</span>
-                <span class="value">{{ item.value }}</span>
+    <div class="container">
+        <div class="row">
+            <div class="col" v-for="fact in filteredFacts" :key="fact.key">
+                <div class="nutrition-fact">
+                    <h3 class="name">{{ fact.name ? fact.name.toUpperCase() : '' }}</h3>
+                    <div class="nutrition-info">
+                        <div class="fact col2" v-for="item in fact.properties" :key="item.label">
+                            <span class="label">{{ item.label }}:</span>
+                            <span class="value">{{ item.value }}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -31,14 +37,61 @@ export default {
 </script>
   
 <style scoped>
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 0 0 33.33%;
+    /* For PC size, 3 items in a row */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.col2 {
+    flex: 0 0 25%;
+    /* For PC size, 4 items in a row */
+    padding: var(--size-xxs);
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+
+    /* For tablet size, 2 items in a row */
+    .col {
+        flex: 0 0 50%;
+    }
+
+    .col2 {
+        flex: 0 0 33.3%;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* For phone size, 1 item per row */
+    .col {
+        flex: 0 0 100%;
+    }
+
+    .col2 {
+        flex: 0 0 50%;
+    }
+}
+
 .nutrition-fact {
     background-color: #ffffff;
-    border: .15rem solid rgb(29, 188, 87, 0.2);
+    border: 0.15rem solid rgba(29, 188, 87, 0.2);
     padding: 0.5rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     border-radius: 4px;
     box-shadow: 0px 2px 4px rgba(29, 188, 87, 0.1);
-    width: 100%;
 }
 
 .name {
@@ -69,3 +122,4 @@ export default {
     font-size: 0.75rem;
 }
 </style>
+  

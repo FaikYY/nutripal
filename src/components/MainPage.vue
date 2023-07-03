@@ -7,12 +7,7 @@
     <button @click="searchNutrition">Search</button>
 
 
-    <div class="centered" v-if="selectedNutrition.length > 0">
-      <NutritionFact :nutritionFact="selectedNutrition" />
-    </div>
-    <div v-else>
-      <!-- <p>No nutrition data found for the given query.</p> -->
-    </div>
+    <NutritionFact :nutritionFact="selectedNutrition" v-if="selectedNutrition.length > 0" />
   </div>
 </template>
 
