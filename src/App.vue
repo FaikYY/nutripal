@@ -10,6 +10,7 @@
 <!-- TODO: Save searched nutrition facts somewhere and keep track of them -->
 
 <template>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <div id="app">
     <MainPage />
   </div>
@@ -28,6 +29,7 @@ export default {
 
 <style>
 @import url("../styles/material-you.css");
+@import url("../styles/variables.css");
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -35,18 +37,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
-input {
-  padding: 1rem;
-  font-size: 1.5rem;
-}
-
-button {
-  font-size: 1.5rem;
-  border: .5px solid rgb(200, 200, 200);
-  margin: 1rem;
-  padding: 1rem;
+.debug {
+  outline: 5px dotted red;
 }
 </style>

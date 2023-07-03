@@ -1,7 +1,9 @@
 :root {
-    --color-primary: #3a8dff;
-    --color-surface: #ffffff;
-    --color-on-surface: #dddddd;
+    --color-primary: rgb(29, 188, 87);
+    --color-primary-light: rgb(29, 188, 87, 0.75);
+    --color-primary-xlight: rgb(29, 188, 87, 0.5);
+    --color-gray: rgb(245, 245, 245);
+    --color-gray-surface: rgb(175, 175, 175);
     /* Add more color variables as needed */
   }
   

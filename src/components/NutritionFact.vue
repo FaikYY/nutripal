@@ -1,7 +1,7 @@
 <template>
     <div class="nutrition-fact" v-for="fact in filteredFacts" :key="fact.key">
         <h3 class="name">{{ fact.name ? fact.name.toUpperCase() : '' }}</h3>
-        <div class="nutrition-info">
+        <div class="nutrition-info ">
             <div class="fact" v-for="item in fact.properties" :key="item.label">
                 <span class="label">{{ item.label }}:</span>
                 <span class="value">{{ item.value }}</span>
@@ -33,17 +33,18 @@ export default {
 <style scoped>
 .nutrition-fact {
     background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    padding: 20px;
-    margin-bottom: 10px;
+    border: .15rem solid rgb(29, 188, 87, 0.2);
+    padding: 0.5rem;
+    margin-bottom: .5rem;
     border-radius: 4px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 4px rgba(29, 188, 87, 0.1);
+    width: 100%;
 }
 
 .name {
-    font-size: 18px;
+    font-size: var(--font-size-l);
     font-weight: bold;
-    /* color: var(--color-primary); */
+    color: var(--color-primary);
     margin-bottom: 10px;
 }
 
@@ -53,16 +54,18 @@ export default {
 }
 
 .fact {
-    width: 50%;
+    width: 100%;
     margin-bottom: 5px;
 }
 
 .label {
     font-weight: bold;
-    color: #3f51b5;
+    color: var(--color-primary);
+    font-size: 0.8rem;
 }
 
 .value {
     margin-left: 10px;
+    font-size: 0.75rem;
 }
 </style>

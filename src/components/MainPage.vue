@@ -1,8 +1,9 @@
 <template>
-  <div class="hello">
+  <div class="MainPage">
     <img alt="Vue logo" src="../assets/logo.png">
-    <h1>Search Something</h1>
-    <input v-model="searchKey" placeholder="Search for a nutrition..." />
+    <h2>Search Something</h2>
+    <input id="searchBar" v-on:keydown.enter="searchNutrition()" v-model="searchKey"
+      placeholder="Search for a nutrition..." />
     <button @click="searchNutrition">Search</button>
 
 
@@ -29,7 +30,7 @@ export default {
   data() {
     return {
       searchKey: '',
-      selectedNutrition: []
+      selectedNutrition: [],
     }
   },
   methods: {
@@ -64,6 +65,7 @@ export default {
           console.error('Error:', error.response.data);
           alert('Error:', error.response.data);
         });
+      this.isFocused = false;
     },
     clearNutrition() {
       this.selectedNutrition = [];
@@ -73,33 +75,57 @@ export default {
 </script>
 
 <style scoped>
-.hello {
+.MainPage {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 95vh;
 }
 
 .centered {
-  width: 50%;
+  width: 70%;
   text-align: center;
 }
 
-h3 {
-  margin: 40px 0 0;
+img {
+  width: 40%;
+  max-width: 200px;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+h2 {
+  color: var(--color-primary);
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
+#searchBar {
+  width: 70%;
+  max-width: 600px;
+  padding: var(--size-s);
+  font-size: var(--font-size-l);
+  color: rgb(125, 125, 125);
+  background-color: var(--color-gray);
+  border-radius: var(--size-s);
+  border: .15rem solid rgb(200, 200, 200);
 }
 
-a {
-  color: #42b983;
+#searchBar::placeholder {
+  color: rgb(125, 125, 125);
+}
+
+#searchBar:focus {
+  outline: none;
+  border-color: var(--color-primary-xlight);
+}
+
+button {
+  font-size: var(--font-size-l);
+  font-weight: 600;
+  color: var(--color-primary-light);
+  background-color: var(--color-gray);
+  border: .15rem solid rgb(200, 200, 200);
+  border-radius: .5rem;
+  margin: 1rem;
+  padding: var(--size-s);
+  padding-left: var(--size-xl);
+  padding-right: var(--size-xl);
 }
 </style>
