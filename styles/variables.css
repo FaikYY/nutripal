@@ -1,0 +1,20 @@
+:root {
+  /* FONT VARIABLES */
+  --font-size-s: .75rem;
+  --font-size-m: .85rem;
+  --font-size-l: 1rem;
+  --font-size-xl: 1.25rem;
+  --font-size-xxl: 1.5rem;
+
+
+
+  /* SIZE VARIABLES */
+  --size-xxs: .25rem;
+  --size-xs: .5rem;
+  --size-s: .75rem;
+  --size-m: .85rem;
+  --size-l: 1rem;
+  --size-xl: 1.25rem;
+  --size-xxl: 1.5rem;
+  }
+  
