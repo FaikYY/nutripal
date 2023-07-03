@@ -1,3 +1,2 @@
 // Get your api key from https://calorieninjas.com/profile
-import { PRIVATE_API_KEY } from "./key.js";
-export const API_KEY = PRIVATE_API_KEY;
+export const API_KEY = "1TNcK92C2hZxAJvVnJ7zK153AJmKYK51xJjD6P7y";

@@ -1,15 +1,11 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col" v-for="fact in filteredFacts" :key="fact.key">
-                <div class="nutrition-fact">
-                    <h3 class="name">{{ fact.name ? fact.name.toUpperCase() : '' }}</h3>
-                    <div class="nutrition-info">
-                        <div class="fact col2" v-for="item in fact.properties" :key="item.label">
-                            <span class="label">{{ item.label }}:</span>
-                            <span class="value">{{ item.value }}</span>
-                        </div>
-                    </div>
+        <div class="nutrition-info-container" v-for="fact in filteredFacts" :key="fact.key">
+            <h3 class="fact-name">{{ fact.name ? fact.name.toUpperCase() : '' }}</h3>
+            <div class="nutrition-fact-item">
+                <div class="fact" v-for="item in fact.properties" :key="item.label">
+                    <span class="fact-label">{{ item.label }}:</span>
+                    <span class="fact-value">{{ item.value }}</span>
                 </div>
             </div>
         </div>
@@ -40,52 +36,71 @@ export default {
 .container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0.5rem;
+    width: 100%;
 }
 
-.row {
+.nutrition-info-container {
+    padding: 20px;
+}
+
+.nutrition-fact-item {
+    width: 25rem;
     display: flex;
     flex-wrap: wrap;
+    padding: var(--size-m);
 }
 
-.col {
-    flex: 0 0 33.33%;
-    /* For PC size, 3 items in a row */
-    padding: 10px;
-    box-sizing: border-box;
+.fact {
+    width: calc(50% - 20px);
+    padding: 5px;
+    margin: 5px;
 }
 
-.col2 {
-    flex: 0 0 25%;
-    /* For PC size, 4 items in a row */
-    padding: var(--size-xxs);
-    box-sizing: border-box;
+.fact span {
+    font-size: var(--size-m);
 }
 
 @media (max-width: 768px) {
-
-    /* For tablet size, 2 items in a row */
-    .col {
-        flex: 0 0 50%;
+    .container {
+        width: 85%;
     }
 
-    .col2 {
-        flex: 0 0 33.3%;
+    .fact span {
+        font-size: calc(var(--size-s) + 0.2rem);
     }
 }
 
 @media (max-width: 576px) {
-
-    /* For phone size, 1 item per row */
-    .col {
-        flex: 0 0 100%;
+    .container {
+        width: 85%;
     }
 
-    .col2 {
-        flex: 0 0 50%;
+    .nutrition-fact-item {
+        width: 85%;
+    }
+
+    .fact span {
+        font-size: var(--size-m);
     }
 }
 
-.nutrition-fact {
+@media (max-width: 450px) {
+    .container {
+        width: 85%;
+    }
+
+    .nutrition-fact-item {
+        width: 85%;
+    }
+
+    .fact span {
+        font-size: calc(var(--size-xs) + .1rem);
+    }
+}
+
+.nutrition-info-container {
     background-color: #ffffff;
     border: 0.15rem solid rgba(29, 188, 87, 0.2);
     padding: 0.5rem;
@@ -94,30 +109,20 @@ export default {
     box-shadow: 0px 2px 4px rgba(29, 188, 87, 0.1);
 }
 
-.name {
+.fact-name {
     font-size: var(--font-size-l);
     font-weight: bold;
     color: var(--color-primary);
     margin-bottom: 10px;
 }
 
-.nutrition-info {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.fact {
-    width: 100%;
-    margin-bottom: 5px;
-}
-
-.label {
+.fact-label {
     font-weight: bold;
     color: var(--color-primary);
     font-size: 0.8rem;
 }
 
-.value {
+.fact-value {
     margin-left: 10px;
     font-size: 0.75rem;
 }
