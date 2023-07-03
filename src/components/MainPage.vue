@@ -1,81 +1,126 @@
 <template>
-  <div class="hello">
+  <div class="MainPage">
     <img alt="Vue logo" src="../assets/logo.png">
-    <h1>Search Something</h1>
-    <input v-model="searchKey" placeholder="search a nutrition..." />
-    <button @click="makeAPICall">Search</button>
-    <h2>Nutrition Name: {{ nutrition.name }}</h2>
-    <h2>Serving Size: {{ nutrition.serving_size_g }}g</h2>
-    <h2>Calories: {{ nutrition.calories }}</h2>
-    <h2>Protein: {{ nutrition.protein_g }}g</h2>
-    <h2>Fat: {{ nutrition.fat_total_g }}g</h2>
+    <h2>Search Something</h2>
+    <input id="searchBar" v-on:keydown.enter="searchNutrition()" v-model="searchKey"
+      placeholder="Search for a nutrition..." />
+    <button @click="searchNutrition">Search</button>
+
+
+    <NutritionFact :nutritionFact="selectedNutrition" v-if="selectedNutrition.length > 0" />
   </div>
 </template>
 
 <script>
+
 import axios from 'axios';
 import { API_KEY } from '../config.js';
+import NutritionFact from './NutritionFact.vue';
 
 export default {
+  components: { NutritionFact },
   props: {
     msg: String
   },
   data() {
     return {
       searchKey: '',
-      nutrition: {}
+      selectedNutrition: [],
     }
   },
   methods: {
-    makeAPICall() {
+    searchNutrition() {
       const query = this.searchKey;
 
       axios
-        .get('https://api.calorieninjas.com/v1/nutrition', {
+        .get('https://api.calorieninjas.com/v1/nutrition/', {
           params: { query },
           headers: { 'X-Api-Key': API_KEY },
         })
         .then((response) => {
           const items = response.data.items;
+          console.log(items);
           if (items.length > 0) {
-            const nutrition = items[0]; // Assuming you only want the first item
-            console.log('Nutrition:', nutrition);
-            console.log('Name:', nutrition.name);
-            console.log('Calories:', nutrition.calories);
-            console.log('Protein:', nutrition.protein_g);
-            console.log('Fat:', nutrition.fat_total_g);
+            const foundNutrition = items;
+            console.log('Nutrition:', foundNutrition[0]);
+            console.log('Name:', foundNutrition[0].name);
+            console.log('Calories:', foundNutrition[0].calories);
+            console.log('Protein:', foundNutrition[0].protein_g);
+            console.log('Fat:', foundNutrition[0].fat_total_g);
 
-            this.nutrition = nutrition;
-            // Print other nutrition values as needed
+            this.selectedNutrition = foundNutrition;
+
           } else {
+            this.clearNutrition();
             console.log('No nutrition data found for the given query.');
+            alert('No nutrition data found for the given query.');
           }
         })
         .catch((error) => {
           console.error('Error:', error.response.data);
+          alert('Error:', error.response.data);
         });
+      this.isFocused = false;
     },
+    clearNutrition() {
+      this.selectedNutrition = [];
+    }
   },
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.MainPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 95vh;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.centered {
+  width: 70%;
+  text-align: center;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
+img {
+  width: 40%;
+  max-width: 200px;
 }
 
-a {
-  color: #42b983;
+h2 {
+  color: var(--color-primary);
+}
+
+#searchBar {
+  width: 70%;
+  max-width: 600px;
+  padding: var(--size-s);
+  font-size: var(--font-size-l);
+  color: rgb(125, 125, 125);
+  background-color: var(--color-gray);
+  border-radius: var(--size-s);
+  border: .15rem solid rgb(200, 200, 200);
+}
+
+#searchBar::placeholder {
+  color: rgb(125, 125, 125);
+}
+
+#searchBar:focus {
+  outline: none;
+  border-color: var(--color-primary-xlight);
+}
+
+button {
+  font-size: var(--font-size-l);
+  font-weight: 600;
+  color: var(--color-primary-light);
+  background-color: var(--color-gray);
+  border: .15rem solid rgb(200, 200, 200);
+  border-radius: .5rem;
+  margin: 1rem;
+  padding: var(--size-s);
+  padding-left: var(--size-xl);
+  padding-right: var(--size-xl);
 }
 </style>
