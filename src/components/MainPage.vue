@@ -1,9 +1,9 @@
 <template>
   <div class="MainPage">
     <img alt="Vue logo" src="../assets/logo.png">
-    <h2>Search Something</h2>
+    <h2>Try to Search A Food To See The Nutrition Facts</h2>
     <input id="searchBar" v-on:keydown.enter="searchNutrition()" v-model="searchKey"
-      placeholder="Search for a nutrition..." />
+      placeholder="1lb chicken breast, 2 oranges..." />
     <button @click="searchNutrition">Search</button>
 
 
@@ -89,6 +89,7 @@ img {
 
 h2 {
   color: var(--color-primary);
+  font-size: var(--size-xl);
 }
 
 #searchBar {
