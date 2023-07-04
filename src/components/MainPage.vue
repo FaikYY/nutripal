@@ -8,6 +8,47 @@
 
 
     <NutritionFact :nutritionFact="selectedNutrition" v-if="selectedNutrition.length > 0" />
+
+      <div class="nutrition-facts">
+  <header>
+    <h1>Nutrition Facts</h1>
+    <p>Serving Size 1 cup (228g)</p>
+    <p>Servings Per Container 2</p>
+  </header>
+  
+  <div class="section">
+    <p><strong>Amount Per Serving</strong></p>
+  </div>
+  
+  <div class="section calories">
+    <p><strong>Calories</strong> 250</p>
+    <p>Calories from Fat 110</p>
+  </div>
+  
+  <div class="divider"></div>
+  
+  <div class="section">
+    <p class="percent daily">% Daily Value*</p>
+    <div class="grid">
+      <p><strong>Total Fat</strong> 12g</p>
+      <p class="right">18%</p>
+      <p class="indent"><strong>Saturated Fat</strong> 3g</p>
+      <p class="right">15%</p>
+      <p class="indent">Trans Fat 0g</p>
+      <p><strong>Cholesterol</strong> 30mg</p>
+      <p class="right">10%</p>
+      <p><strong>Sodium</strong> 470mg</p>
+      <p class="right">20%</p>
+      <p><strong>Total Carbohydrate</strong> 31g</p>
+      <p class="right">10%</p>
+      <p class="indent"><strong>Dietary Fiber</strong> 0g</p>
+      <p class="right">0%</p>
+      <p class="indent"><strong>Sugars</strong> 5g</p>
+      <p><strong>Protein</strong> 5g</p>
+    </div>
+  </div>
+</div>
+
   </div>
 </template>
 
@@ -124,4 +165,47 @@ button {
   padding-left: var(--size-xl);
   padding-right: var(--size-xl);
 }
+
+.nutrition-facts {
+  font-family: Arial, sans-serif;
+  width: 300px;
+  border: 1px solid #333;
+  padding: 15px;
+}
+
+header {
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+
+.section {
+  padding: 10px 0;
+}
+
+.divider {
+  border-bottom: 1px solid #333;
+}
+
+.calories {
+  font-size: 1.2em;
+  border-bottom: 1px solid #333;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.percent.daily {
+  font-size: .9em;
+}
+
+.right {
+  text-align: right;
+}
+
+.indent {
+  padding-left: 10px;
+}
+
 </style>
