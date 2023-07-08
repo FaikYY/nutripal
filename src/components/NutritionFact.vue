@@ -1,5 +1,15 @@
 <template>
     <div class="container">
+        <div class="total-facts">
+            <h3 class="total-calories-label">Total Calories:</h3>
+            <span class="total-calories-value">100</span>
+            <div class="nutrition-fact-item">
+                <div class="fact total-fact" v-for="(value, label) in totalFact" :key="label">
+                    <span class="total-calories-label fact-label">Total {{ label }}:</span>
+                    <span class="fact-value">{{ value }}</span>
+                </div>
+            </div>
+        </div>
         <div class="nutrition-info-container" v-for="fact in filteredFacts" :key="fact.key">
             <h3 class="fact-name">{{ fact.name ? fact.name.toUpperCase() : '' }}</h3>
             <div class="nutrition-fact-item">
@@ -28,6 +38,22 @@ export default {
                 })),
             }));
         },
+        totalFact() {
+            let totalFact = {};
+            this.filteredFacts.forEach(fact => {
+                fact.properties.forEach(item => {
+                    // Check if the value is numeric to prevent name sum operation
+                    if (!isNaN(Number(item.value))) {
+                        if (!totalFact[item.label]) {
+                            totalFact[item.label] = 0;
+                        }
+                        totalFact[item.label] += Number(item.value);
+                        totalFact[item.label] = Number(totalFact[item.label].toFixed(4));
+                    }
+                });
+            });
+            return totalFact;
+        }
     },
 };
 </script>
@@ -56,6 +82,12 @@ export default {
     width: calc(50% - 20px);
     padding: 5px;
     margin: 5px;
+}
+
+.total-fact {
+    width: calc(50% - 20px);
+    padding: 5px;
+    /* margin: 5px; */
 }
 
 .fact span {
@@ -118,13 +150,24 @@ export default {
 
 .fact-label {
     font-weight: bold;
-    color: var(--color-primary);
     font-size: 0.8rem;
 }
 
 .fact-value {
     margin-left: 10px;
     font-size: 0.75rem;
+    color: var(--color-primary);
+}
+
+.total-facts {
+    margin-top: var(--size-xs);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.total-calories-label {
+    /* display: inline-block; */
+    margin-right: 5px;
 }
 </style>
   

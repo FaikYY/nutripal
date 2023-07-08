@@ -1,6 +1,4 @@
 <!-- TODO: Example todo comment -->
-<!-- TODO: Seperate the widget for the search bar -->
-<!-- TODO: Seperate the widget for the button -->
 <!-- TODO: Create a nutrition information container like the ones ona real food package for the nutrition responses -->
 <!-- TODO: Create a function to calculate the daily intake percantage of a specific nutrition such as "protein %20 of daily intake" -->
 <!-- TODO: Ask user weight, height and age to calculate their daily needs and give the percentage based on that information -->
