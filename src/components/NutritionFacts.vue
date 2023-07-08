@@ -2,9 +2,9 @@
     <div class="container">
         <div class="total-facts">
             <h3 class="total-calories-label">Total Calories:</h3>
-            <span class="total-calories-value">100</span>
+            <span class="total-calories-value">{{ totalFact['Calories'] }}</span>
             <div class="nutrition-fact-item">
-                <div class="fact total-fact" v-for="(value, label) in totalFact" :key="label">
+                <div class="fact total-fact" v-for="(value, label) in totalFactWithoutCalories" :key="label">
                     <span class="total-calories-label fact-label">Total {{ label }}:</span>
                     <span class="fact-value">{{ value }}</span>
                 </div>
@@ -53,7 +53,12 @@ export default {
                 });
             });
             return totalFact;
-        }
+        },
+        totalFactWithoutCalories() {
+            let totalFactCopy = { ...this.totalFact };
+            delete totalFactCopy['Calories'];
+            return totalFactCopy;
+        },
     },
     methods: {
         formatLabel(label) {
