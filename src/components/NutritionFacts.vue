@@ -24,7 +24,7 @@
   
 <script>
 export default {
-    name: "NutritionFact",
+    name: "NutritionFacts",
     props: ["nutritionFact"],
     computed: {
         filteredFacts() {
@@ -33,7 +33,7 @@ export default {
                 key: key,
                 name: value.name,
                 properties: Object.entries(value).map(([label, propValue]) => ({
-                    label,
+                    label: this.formatLabel(label),
                     value: propValue,
                 })),
             }));
@@ -55,6 +55,16 @@ export default {
             return totalFact;
         }
     },
+    methods: {
+        formatLabel(label) {
+            let formattedLabel = label.replace(/_/g, ' '); // Replace underscores with spaces
+            formattedLabel = formattedLabel.charAt(0).toUpperCase() + formattedLabel.slice(1); // Capitalize the first letter
+            if (formattedLabel.includes(' g') || formattedLabel.includes(' mg')) { // Add parentheses if needed
+                formattedLabel = formattedLabel.replace(' g', ' (g)').replace(' mg', ' (mg)');
+            }
+            return formattedLabel;
+        }
+    }
 };
 </script>
   
@@ -166,7 +176,7 @@ export default {
 }
 
 .total-calories-label {
-    /* display: inline-block; */
+    display: inline-block;
     margin-right: 5px;
 }
 </style>
