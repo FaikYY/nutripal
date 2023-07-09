@@ -18,10 +18,6 @@
                         <b>Calories</b>
                         200
                     </th>
-                    <td>
-                        Calories from Fat
-                        130
-                    </td>
                 </tr>
                 <tr class="thick-row">
                     <td colspan="3" class="small-info">

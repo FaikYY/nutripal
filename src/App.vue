@@ -6,6 +6,8 @@
 <!-- TODO: Focus on seperation of concerns and clean the code by simplifying the variables -->
 <!-- TODO: Add a demo api call counter to prevent api key limit exhaustion, specifically for live demo version -->
 <!-- TODO: Save searched nutrition facts somewhere and keep track of them -->
+<!-- TODO: Being able to switch between nutrition facts classic tag look and pie chart -->
+<!-- TODO: Dark / light mode -->
 
 <template>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

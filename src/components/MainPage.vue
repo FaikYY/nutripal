@@ -7,8 +7,8 @@
     <button @click="searchNutrition">Search</button>
 
 
-    <NutritionFacts :nutritionFact="selectedNutrition" v-if="selectedNutrition.length > 0" />
-    <!-- <NutritionFactsTable /> -->
+    <!-- <NutritionFacts :nutritionFact="selectedNutrition" v-if="selectedNutrition.length > 0" /> -->
+    <NutritionFactsTable />
   </div>
 </template>
 
@@ -16,12 +16,12 @@
 
 import axios from 'axios';
 import { API_KEY } from '../config.js';
-import NutritionFacts from './NutritionFacts.vue';
-// import NutritionFactsTable from './NutritionFactsTable.vue';
+// import NutritionFacts from './NutritionFacts.vue';
+import NutritionFactsTable from './NutritionFactsTable.vue';
 
 export default {
-  components: { NutritionFacts },
-  // components: { NutritionFactsTable },
+  // components: { NutritionFacts },
+  components: { NutritionFactsTable },
   props: {
     msg: String
   },
